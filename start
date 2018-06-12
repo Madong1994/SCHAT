@@ -1,0 +1,6 @@
+
+cd jre\bin
+java -jar ../../SCHAT_jar/SCHAT.jar
+::pause
+pause
+
