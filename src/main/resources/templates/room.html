@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>SMCAHT</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/logo/smchat.png}" href="/static/logo/smchat.png">
+    <link th:href="@{/css/layui.css}" href="/static/css/layui.css" rel="stylesheet" />
+    <link th:href="@{/css/layui.css}" href="/static/css/layui.css" rel="stylesheet" />
+    <link th:href="@{/css/msmart.css}" href="/static/css/msmart.css" rel="stylesheet" />
+</head>
+<body>
+<div id="sroot">
+    <!--导航栏-->
+    <div class=" ms-width-100-per ms-height-8-per ms-bottom-border-2px-red ms-layout-center-horizontal" style="background: #393D49;color:white">
+        <div class="ms-height-100-per ms-width-20-per ms-layout-center-horizontal"><a style="text-decoration:none;color: white" href="/index">SMChat</a></div>
+        <div id="room_ID" class="ms-height-100-per ms-width-40-per ms-layout-center-horizontal">房间ID:<span style="color: lavender" th:text="${room.roomName}"></span></div>
+        <div id="room_a" class="ms-height-100-per ms-width-40-per ms-layout-center-horizontal">房间地址：<span style="color: bisque">http://smchat.cn/room?roomid=<span th:text="${room.roomName}"></span></span></div>
+    </div>
+    <div id="msg_div" class="ms-width-80-per ms-height-80-per ms-scrollbar-black" style="overflow: scroll">
+
+        <!--<div class="ms-width-80-per ms-height-6-per ms-align-items-center" style="color: #5FB878;">
+            titile
+        </div>
+        <div class="ms-width-80-per ms-layout-wrap-left-center">
+            111111444444444444444444444444444444444444444<br>
+            11111<br>
+            44444<br>
+        </div>-->
+    </div>
+    <!--信息编辑窗口-->
+    <div class="ms-width-60-per ms-height-10-per ms-layout-wrap-left-center ms-top-border-2px-black">
+        <div class="ms-width-80-per ms-height-90-per">
+            <textarea id="textareaMsgId" placeholder="请输入信息内容 CTRL+ENTER换行"  class="layui-textarea"></textarea>
+        </div>
+    </div>
+</div>
+
+<!--弹框-->
+<div id="alialDiv"class="ms-layout-nowrap-vertical" style="display:none">
+    <!--<form class="layui-form" action="">-->
+        <div class="ms-width-80-per ms-height-20-per ms-margin-top-1rem">
+             <input id="alialInput" type="text" name="title" required  lay-verify="required" placeholder="请输入呢称" autocomplete="off" class="layui-input">
+        </div>
+
+        <div class="ms-width-80-per ms-height-20-per ms-margin-top-1rem">
+            <button id="alialButton" class="layui-btn layui-btn-fluid" lay-filter="formDemo">立即提交</button>
+        </div>
+        <span id="tipSpan" class="ms-margin-top-1rem" style="color: red"></span>
+    <!--</form>-->
+</div>
+</body>
+<script th:src="@{/jquery-3.2.1.min.js}" src="/static/jquery-3.2.1.min.js"></script>
+<script th:src="@{/layui.js}" src="/static/layui.js"></script>
+<script th:src="@{/schatjs/variable.js}" src="/static/schatjs/variable.js"></script>
+<script th:src="@{/schatjs/index.js}" src="/static/schatjs/index.js"></script>
+<script th:src="@{/schatjs/room.js}" src="/static/schatjs/room.js"></script>
+<script>
+    /*$().ready(function(){
+        initSize($("#sroot"));
+    })*/
+</script>
+</html>

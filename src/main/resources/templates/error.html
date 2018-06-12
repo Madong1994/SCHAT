@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>error</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/logo/smchat.png}" href="/static/logo/smchat.png">
+    <link th:href="@{/css/layui.css}" href="/static/css/layui.css" rel="stylesheet" />
+</head>
+<body>
+
+</body>
+<script  type="text/javascript" th:src="@{/layui.js}" src="/static/layui.js">
+</script>
+<script>
+    layui.use(['layer'], function() {
+        var layer = layui.layer;
+        layer.open({
+            title: 'erro',
+            closeBtn: 0,
+            content: "输入的房间名称格式错误！" //数组第二项即吸附元素选择器或者DOM
+        });
+    });
+</script>
+</html>

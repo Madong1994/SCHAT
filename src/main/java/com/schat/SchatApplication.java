@@ -1,0 +1,30 @@
+package com.schat;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.ComponentScan;
+
+@SpringBootApplication
+@ComponentScan("com.schat")
+public class SchatApplication {
+	/*@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+		return builder.sources(SchatApplication.class);
+	}*/
+	public static void main(String[] args) {
+		SpringApplication.run(SchatApplication.class, args);
+	}
+//	@Bean
+//	public EmbeddedServletContainerCustomizer containerCustomizer() {
+//
+//		return (container -> {
+//			ErrorPage error401Page = new ErrorPage(HttpStatus.UNAUTHORIZED, "/401.html");
+//			ErrorPage error404Page = new ErrorPage(HttpStatus.NOT_FOUND, "/404.html");
+//			ErrorPage error500Page = new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/500.html");
+//
+//			container.addErrorPages(error401Page, error404Page, error500Page);
+//		});
+//	}
+}

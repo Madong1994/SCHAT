@@ -1,0 +1,49 @@
+spring:
+#  main:
+#    banner-mode: "console"
+
+  profiles:
+    #启用开发环境配置
+    active: production
+
+---
+#server:
+#  tomcat:
+#    remote_ip_header: x-forwarded-for
+#    protocol_header: x-forwarded-proto
+#    port-header: X-Forwarded-Port
+#  use-forward-headers: true
+
+logging:
+#  config: classpath:logback.xml
+server:
+  session:
+    timeout: 1800
+---
+#以下是开发环境配置
+spring:
+  profiles: development
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates
+    suffix: .html
+    mode: LEGACYHTML5
+    encoding: UTF-8
+    content-type: text/html
+server:
+  port: 10100
+
+---
+#以下是生产环境配置
+spring:
+  profiles: production
+  thymeleaf:
+    cache: true
+    prefix: classpath:/templates
+    suffix: .html
+    mode: HTML5
+    encoding: UTF-8
+    content-type: text/html
+server:
+  port: 80
+

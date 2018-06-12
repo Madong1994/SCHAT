@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="baidu-site-verification" content="NAePnFc3kQ" />
+    <meta name="description" content="马东的官方网站，SMChat">
+    <meta name="keyword" content="马东的官方聊天网站，马东的官方网站，SMChat,马东的聊天网站，马东的网站，聊天网站">
+    <meta charset="UTF-8">
+    <title>SMCAHT.简单聊</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/logo/smchat.png}" href="/static/logo/smchat.png">
+    <link th:href="@{/css/layui.css}" href="/static/css/layui.css" rel="stylesheet" />
+    <link th:href="@{/css/msmart.css}" href="/static/css/msmart.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="sroot" class="ms-layout-center-horizontal">
+        <!--<div class="ms-width-40-per ms-height-30-per ms-layout-center-vertical-with-wrap debug">-->
+            <!--<h1>S.Chat</h1>-->
+        <!--</div>-->
+        <!--all-->
+        <div class="ms-height-100-per ms-width-30-per"></div>
+        <div class="ms-layout-center-vertical-with-wrap ms-height-100-per ms-width-40-per">
+            <!--top-->
+            <div class="ms-width-100-per ms-height-30-per"></div>
+            <!--center-->
+            <div id="sc-one" class="ms-width-100-per ms-height-40-per ms-layout-nowrap-vertical">
+                <div class=" ms-width-50-per ms-height-40-per ms-layout-center-vertical-with-wrap" style="background: #393D49">
+                    <h1 class="ms-text-color-white">SMChat</h1>
+                    <h6 class="ms-text-color-white">简单聊，聊完即走。</h6>
+                </div>
+                <div class="ms-width-50-per ms-height-30-per ms-layout-center-vertical-with-wrap">
+                    <input id="roomId" type="text" name="title" required lay-verify="required" placeholder="请输入房间名称" autocomplete="off" class="layui-input">
+                </div>
+                <div class="ms-width-50-per ms-height-30-per ms-layout-center-vertical-with-wrap">
+                    <button id="creatBtn" class="layui-btn layui-bg-blue layui-btn-radius ms-width-100-per">创建房间</button>
+                </div>
+
+            </div>
+            <!--bottom-->
+            <div class=" ms-width-100-per ms-height-30-per ms-layout-center-bottom-vertical-with-wrap">
+                <div class="ms-height-30-per ms-width-100-per ms-layout-center-horizontal">
+                    <span>Copyright @ 2018 - 2019 SMChat 渝ICP备18003420号</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="ms-height-100-per ms-width-30-per ms-layout-center-horizontal">
+            <div class="ms-height-100-per ms-width-50-per"></div>
+            <div class="ms-height-100-per ms-width-50-per ms-layout-center-vertical-with-wrap">
+                <div class="ms-width-100-per ms-height-10-per ">
+                    喜欢请支持一下吧！谢谢！<i class="layui-icon" style="font-size: 18px; color: #ff5548;">&#xe6af;</i>
+                </div>
+                <div class="ms-width-100-per ms-height-30-per ">
+                    <img class="ms-width-80-per ms-height-80-per" th:src="@{/img/w5.png}">
+                </div>
+                <div class="ms-width-100-per ms-height-30-per ">
+                    <img class="ms-width-80-per ms-height-80-per" th:src="@{/img/z5.png}">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+<script  type="text/javascript" th:src="@{/jquery-3.2.1.min.js}" src="/static/jquery-3.2.1.min.js"></script>
+<script  type="text/javascript" th:src="@{/layui.js}" src="/static/layui.js"></script>
+<script>
+
+layui.use(['layer'], function() {
+    var layer = layui.layer
+    initSize($("#sroot"));
+    function initSize($obj, isIndex)
+    {
+        var width = document.documentElement.clientWidth;
+        var height = $(window).height();
+        if(isIndex)
+        {
+            $obj.css({width: width, height: height});//112是控制栏
+        }
+        else
+        {
+            $obj.css({width:width,height:height});
+        }
+        // onWindowResize();
+    }
+    document.onkeydown=function(e){
+        if(e.keyCode == 13){
+            btn();
+        }
+    };
+        $("#creatBtn").click(function(){
+            btn();
+        });
+
+    function btn(){
+        var roomId = $("#roomId").val();
+        if(roomId.length >8){
+            layer.open({
+                title: 'erro'
+                ,content: '输入的房间名称过长！'
+            });
+            return;
+        }
+        if(roomId.length == 0){
+            layer.open({
+                title: 'erro'
+                ,content: '未输入房间名称！'
+            });
+            return;
+        }
+        window.location.href = "/room?roomid="+roomId;
+
+        $(this).attr('disabled','disabled');
+
+    }
+});
+
+
+
+</script>
+<!--<script  type="text/javascript" th:src="@{/schatjs/index.js}" src="/static/schatjs/index.js"></script>-->
+
+</html>

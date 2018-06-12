@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>SMCAHT</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/logo/smchat.png}" href="/static/logo/smchat.png">
+    <link th:href="@{/css/layui.css}" href="/static/css/layui.css" rel="stylesheet" />
+    <link th:href="@{/css/msmart.css}" href="/static/css/msmart.css" rel="stylesheet" />
+    <style>
+        @-moz-keyframes top /* Firefox */
+        {
+            from {
+                opacity:1;
+                background: black;
+                z-index:10;
+            }
+            to {
+                opacity:1;
+                background: white;
+                z-index:8;
+            }
+        }
+        @-webkit-keyframes top /* Safari 和 Chrome */
+        {
+            from {
+                opacity:1;
+                background: black;
+                z-index:10;
+            }
+            to {
+                opacity:1;
+                background: white;
+                z-index:8;
+            }
+        }
+
+        @keyframes top /* Safari 和 Chrome */
+        {
+            from {
+                opacity:1;
+                background: black;
+                z-index:10;
+            }
+            to {
+                opacity:1;
+                background: white;
+                z-index:8;
+            }
+        }
+
+        @-o-keyframes top /* Safari 和 Chrome */
+        {
+            from {
+                opacity:1;
+                background: black;
+                z-index:10;
+            }
+            to {
+                opacity:1;
+                background: white;
+                z-index:8;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="activity_root" class="ms-layout-nowrap-vertical">
+        <div class="ms-width-90-per ms-height-20-per ms-layout-nowrap-vertical " style="font-size: 25px;">
+            <h5>活动由：微信<span style="color: #1E9FFF">熊猫体育</span>主办</h5>
+            <h5>活动由：<span>smchat.cn/schat/index</span> 独家赞助</h5>
+            <h5>PC地址输入：<span style="color: red">smchat.cn/schat/index</span> 简单聊天，聊完即走！</h5>
+        </div>
+        <div class="ms-width-80-per ms-height-100-per ms-layout-nowrap-vertical" >
+            <div class="ms-width-100-per ms-height-80-per" style="position:relative">
+                <div id="top" class="ms-width-100-per ms-height-100-per black"  style="position:absolute;top:0px;left:0px;z-index:10"></div>
+                <div id="bottom" class="ms-width-100-per ms-height-100-per ms-layout-nowrap-vertical"  style="background:red;position:absolute;top:0px;left:0px;z-index:9;font-size: 25px;color: white">
+                    <div class="ms-width-100-per ms-height-80-per ms-layout-center-horizontal" >恭喜您获得<span id="resultSpan" style="color: blue">10</span>熊猫币!</div>
+                    <div class="ms-width-100-per ms-height-10-per ms-layout-center-horizontal">请截图发至微信 熊猫体育</div>
+                    <div class="ms-width-100-per ms-height-10-per ms-layout-center-horizontal">时间：<span id="time"></span></div>
+                </div>
+            </div>
+            <div class="ms-width-100-per ms-height-20-per ms-layout-center-horizontal">
+                <button id="activityBtn" class="layui-btn layui-btn-primary layui-btn-radius ms-width-100-per ms-height-80-per">抽取红包</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script  type="text/javascript" th:src="@{/jquery-3.2.1.min.js}" src="/static/jquery-3.2.1.min.js"></script>
+<script  type="text/javascript" th:src="@{/layui.js}" src="/static/layui.js"></script>
+<script>
+    $(document).ready(function(){
+        initSize($("#activity_root"));
+        $("#activityBtn").click(function(){
+
+            $.ajax({
+                url:'/activity/result',
+                type:'POST', //GET
+                async:true,    //或false,是否异步
+                dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                success:function(data){
+                    console.log(data)
+                    $("#resultSpan").text(data.result);
+                    $("#time").text(data.time);
+                    $("#top").css("-webkit-animation","top 3s");
+                    $("#top").css("animation","top 3s");
+                    $("#top").css("-moz-animation","top 3s");
+                    $("#top").css("-o-animation","top 3s");
+//            $("#top").css("display","none")
+                    setTimeout(setTopCss(),3100);
+                },
+                error:function(xhr,textStatus){
+                    console.log('错误')
+                    console.log(xhr)
+                    console.log(textStatus)
+                }
+            })
+            $(this).attr('disabled',true);
+        });
+    });
+
+    function setTopCss(){
+        $("#top").css("z-index","8");
+        $("#top").css("background","write");
+//        $("#top").css("display","none");
+    }
+//    $().ready(function(){
+//
+//    })
+
+    function initSize($obj, isIndex)
+    {
+        var width = document.documentElement.clientWidth;
+        var height = $(window).height();
+        if(isIndex)
+        {
+            $obj.css({width: width, height: height});//112是控制栏
+        }
+        else
+        {
+            $obj.css({width:width,height:height});
+        }
+        // onWindowResize();
+    }
+//    $("#activityBtn").click(function(){
+//        alert(1);
+////        $("#top").style.cssText("-moz-animation:top 5s");
+//    })
+</script>
+</html>
